@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+<!-- Title Block -->
+{%block title%}
+<title>Registration Page</title>
+{%endblock%}
+<!-- Links Block -->
+{%block links%}
+<link rel="stylesheet" href="/static/home.css" />
+{%endblock%}
+<!-- content block -->
+{%block content%}
+<form method="POST">
+	<h1>Login</h1>
+	{%for category,message in get_flashed_messages(with_categories=true)%}
+	<p class="{{category}}">{{message}}</p>
+	{%endfor%}
+	<!-- allow form hidden tag -->
+	{{ form.hidden_tag() }}
+	<!-- loop through fields -->
+	{%for field in form if field.widget.input_type != 'hidden' %}
+	<p>
+		{{field.label}}: <br />
+		{{field}} <br />
+		{% for error in field.errors %} {%if error%}
+		<span class="error"> {{ error }} </span>
+		{%else%}
+		<span>Problem here</span>
+		{%endif%} {% endfor %}
+	</p>
+	{%endfor%}
+	<button type="submit">Login</button>
+</form>
+{%endblock%}

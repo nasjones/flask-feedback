@@ -1,0 +1,25 @@
+{%extends 'base.html'%}
+<!-- Title Block -->
+{%block title%}
+<title>{{user.username}}'s Page</title>
+{%endblock%}
+<!-- Links Block -->
+{%block links%}
+<link rel="stylesheet" href="/static/home.css" />
+{%endblock%}
+<!-- content block -->
+{%block content%}
+<h1>{{user.username}}</h1>
+<span><i>{{user.first_name}} {{user.last_name}}</i></span>
+<h2>Email:</h2>
+<p>{{user.email}}</p>
+<h3>Feedback:</h3>
+<ul>
+	{%for feedback in user.feedback%}
+	<li>
+		{{feedback.title}} <a href="/feedback/{{feedback.id}}/update">edit</a>
+	</li>
+
+	{%endfor%}
+</ul>
+{%endblock%}
